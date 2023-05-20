@@ -11,7 +11,7 @@ const Mail = () => {
   const { purple, blue, green, yellow, defaultColor, indigo, deepOrange } =
     colorSet;
 
-  let result = 0,
+  let result = 77,
     avatarValue = "";
   let loggedInUser = JSON.parse(sessionStorage.getItem("LOGGED_IN_USER"));
 
@@ -43,7 +43,7 @@ const Mail = () => {
   useEffect(() => {
     if (response) {
       dispatch(getOne(response?.mail));
-      getUserColorcode();
+      // getUserColorcode();
     }
   }, [response]);
 
