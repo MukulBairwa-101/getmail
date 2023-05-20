@@ -11,12 +11,7 @@ require('dotenv').config();
 
 
 app.use(express.json());
-app.use(cors(
-    {
-        origin:'https://getmail.netlify.app',
-        credentials: true,
-    }
-));
+app.use(cors());
 app.use("/auth",authrouter);
 
 app.use("/mailbox",mailboxrouter)
