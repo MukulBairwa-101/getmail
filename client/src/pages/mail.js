@@ -27,9 +27,9 @@ const Mail = () => {
 
   const getUserColorcode = () => {
     if (loggedInUser.email === mail?.from) {
-      avatarValue = mail?.to.substring(0, 1);
+      avatarValue = mail?.to.substring(0, 1) ?? 'd';
     } else {
-      avatarValue = mail?.from.substring(0, 1);
+      avatarValue = mail?.from.substring(0, 1) ?? 'd';
     }
 
     result = avatarValue.charCodeAt(0);
@@ -37,15 +37,17 @@ const Mail = () => {
 
   useEffect(() => {
     request("GET", `/mailbox/getOne/${id}`);
+   
   }, []);
 
   useEffect(() => {
     if (response) {
       dispatch(getOne(response?.mail));
+      getUserColorcode();
     }
   }, [response]);
 
-  getUserColorcode();
+ 
 
   return (
     <div className="flex flex-col justify-between gap-4 mb-24   font-poppins  ">
@@ -89,7 +91,7 @@ const Mail = () => {
               }}
               className="z-0 "
             >
-              {avatarValue}
+              {avatarValue ?? 'de'}
             </Avatar>
 
             <div className="flex flex-col md:flex-row justify-between  w-full">
