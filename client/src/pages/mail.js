@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import useHelper from "../helper/useHelper";
 import { getOne } from "../Redux/Action";
-import { BsArrowLeftShort, FiStar } from "../util/data";
+import { BsArrowLeftShort } from "../util/data";
 import Avatar from "@mui/material/Avatar";
 import { colorSet } from "../util/data";
 
@@ -63,7 +63,6 @@ const Mail = () => {
           <h2 className=" text-xl sm:text-2xl text-gray-700   p-2 ">
             {mail?.subject}
           </h2>
-          {/* <FiStar className={`absolute text-md md:text-3xl md:p-2 right-4 bottom-0 text-slate-500 cursor-pointer hover:rounded-full hover:bg-slate-100 ${mail?.isFavourate ? 'fill-amber-300 text-amber-300  ':''} `}/> */}
         </div>
         <div
           id="mail_body"

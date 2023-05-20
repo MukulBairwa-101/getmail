@@ -22,7 +22,6 @@ const ForgotPassword = () => {
     register,
     handleSubmit,
     formState: { errors },
-    formState,
   } = useForm();
 
   const { request, response } = useHelper();

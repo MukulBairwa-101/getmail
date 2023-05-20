@@ -23,7 +23,6 @@ const TwoWayAuth = () => {
     register,
     handleSubmit,
     formState: { errors },
-    formState,
   } = useForm();
   const navigate = useNavigate();
   const { state } = useLocation();

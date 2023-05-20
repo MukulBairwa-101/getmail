@@ -10,9 +10,6 @@ import ComposeForm from "./Components/ComposeForm";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import TwoWayAuth from "./pages/auth/TwoWayAuth";
 import ResetPassword from "./pages/auth/ResetPassword";
-import { toast, ToastContainer } from "react-toastify";
-
-import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
 
@@ -43,9 +40,7 @@ function App() {
 
 
   return (
-    <div className="App">
-            <ToastContainer />
-    
+    <div className="App">  
         <div className="flex relative">
           <ComposeForm />
           <Header />
@@ -53,7 +48,6 @@ function App() {
             <Sidebar />
             <div className="sm:ml-60  mt-24 w-full md:w-3/4 ">
               <Routes>
-                {/* <Route path="/" element={<Inbox />} /> */}
                 <Route path="/inbox" element={<Inbox />} />
                 <Route path="/sent" element={<Sent />} />
                 <Route path="/mail/:id" element={<Mail />} />

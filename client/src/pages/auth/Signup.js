@@ -4,29 +4,17 @@ import useHelper from "../../helper/useHelper";
 import { useNavigate } from "react-router-dom";
 
 import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 import { styled } from "@mui/material/styles";
 import { indigo } from "@mui/material/colors";
 import { VscEye, VscEyeClosed } from "../../util/data";
 
-const SignInButton = styled(Button)(({ theme }) => ({
-  color: theme.palette.getContrastText(indigo[500]),
-  width: "400px",
-  backgroundColor: indigo[400],
-  "&:hover": {
-    backgroundColor: indigo[600],
-  },
-}));
-
 const SignUp = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-    formState,
   } = useForm();
 
   const navigate = useNavigate();
