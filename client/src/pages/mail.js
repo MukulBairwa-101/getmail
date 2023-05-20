@@ -11,8 +11,8 @@ const Mail = () => {
   const { purple, blue, green, yellow, defaultColor, indigo, deepOrange } =
     colorSet;
 
-  let result = 77,
-    avatarValue = null;
+  let result = 0,
+    avatarValue = '';
   let loggedInUser = JSON.parse(sessionStorage.getItem("LOGGED_IN_USER"));
 
   let { id } = useParams();
@@ -25,15 +25,15 @@ const Mail = () => {
 
   const { request, response } = useHelper();
 
-  // const getUserColorcode = () => {
-  //   if (loggedInUser.email === mail?.from) {
-  //     avatarValue = mail?.to.substring(0, 1) ?? 'd';
-  //   } else {
-  //     avatarValue = mail?.from.substring(0, 1) ?? 'd';
-  //   }
+  const getUserColorcode = () => {
+    if (loggedInUser.email === mail?.from) {
+      avatarValue = mail?.to.substring(0, 1) ?? 'd';
+    } else {
+      avatarValue = mail?.from.substring(0, 1) ?? 'd';
+    }
 
-  //   result = avatarValue.charCodeAt(0);
-  // };
+    result = avatarValue.charCodeAt(0);
+  };
 
   useEffect(() => {
     request("GET", `/mailbox/getOne/${id}`);
@@ -43,7 +43,7 @@ const Mail = () => {
   useEffect(() => {
     if (response) {
       dispatch(getOne(response?.mail));
-      // getUserColorcode();
+      getUserColorcode();
     }
   }, [response]);
 

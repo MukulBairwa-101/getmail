@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
@@ -12,6 +12,9 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
 import { styled } from "@mui/material/styles";
+
+import Loader from "../Components/Loader";
+
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -63,13 +66,14 @@ const ComposeForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [isClicked, setIsClicked] = useState(false);
+
   const compose = useSelector((state) => state.appReducer?.popupActive);
 
   const { request, response } = useHelper();
 
   const handleClose = () => {
     dispatch(popupActive(false));
-
     reset({
       formState: {},
     });
@@ -88,10 +92,8 @@ const ComposeForm = () => {
       `/mailbox/sendmail?email=${loggedInUser?.user?.email}&username=${loggedInUser?.user?.username}`,
       data
     );
+    setIsClicked(true)
   };
-
-  if (formState.errors) {
-  }
 
   useEffect(() => {
     if (response) {
@@ -185,7 +187,18 @@ const ComposeForm = () => {
               <DialogActions>
                 <BootstrapButtonDelete onClick={handleClose}>Delete</BootstrapButtonDelete>
                 <BootstrapButton variant="contained" type="submit">
-                  Send
+                <div className=" flex justify-center items-center">
+                {
+                  !response  && isClicked ?
+                  <>
+                  <Loader />
+                  Sending
+                  </>
+                  : response && isClicked ? 'Send'
+                  : 'Send'
+                }
+
+                </div>
                 </BootstrapButton>
               </DialogActions>
             </form>

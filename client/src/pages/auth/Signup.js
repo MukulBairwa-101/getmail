@@ -46,8 +46,8 @@ const SignUp = () => {
     <div className="flex justify-center w-full">
       <div class="w-full max-w-sm">
         <div className="flex flex-col w-1/6 m-auto ">
-          <Avatar sx={{ m: 1, bgcolor: "primary.main" }} />
-          <h2 className="txet-2xl"> GetMail</h2>
+        <Avatar sx={{ m: 2, bgcolor: "primary.main" }} />
+        <h2 className="text-xl text-center tracking-wide"> GetMail</h2>
         </div>
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 my-2"
@@ -164,10 +164,13 @@ const SignUp = () => {
           </div>
           <div class="flex items-center justify-between mb-6">
             <button
-              class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              class="bg-blue-500 hover:bg-blue-700 text-white font-bold  rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
+              <div className="py-1 px-2">
               Sign Up
+
+              </div>
             </button>
           </div>
           <hr />

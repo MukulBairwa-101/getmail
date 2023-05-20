@@ -7,6 +7,7 @@ import { gapi } from "gapi-script";
 import Avatar from "@mui/material/Avatar";
 import { VscEye, VscEyeClosed } from "../../util/data";
 import { toast, ToastContainer } from "react-toastify";
+import Loader from "../../Components/Loader";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -20,6 +21,7 @@ const Signin = () => {
   } = useForm();
 
   const [togglePassword, setTogglePassword] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   const { request, response } = useHelper();
   const { request: googleReq, response: googleRes } = useHelper();
@@ -27,7 +29,6 @@ const Signin = () => {
   const notify = (text) => {
     toast.error(text);
   };
-
   useEffect(() => {
     if (response) {
       sessionStorage.setItem("LOGGED_IN_USER", JSON.stringify(response));
@@ -67,6 +68,7 @@ const Signin = () => {
 
   const handleFormData = (data) => {
     request("POST", "/auth/signin", data);
+    setIsClicked(true)
   };
 
   const handleCallbackResponse = (response) => {};
@@ -89,14 +91,16 @@ const Signin = () => {
 
   const responseErrorGoogle = (googleResponse) => {};
 
+
+
   return (
     <>
       <ToastContainer />
       <div className="flex justify-center w-full">
         <div className="w-full max-w-xs">
           <div className="flex flex-col w-1/5 m-auto ">
-            <Avatar sx={{ m: 1, bgcolor: "primary.main" }} />
-            <h2 className="txet-2xl"> GetMail</h2>
+            <Avatar sx={{ m: 2, bgcolor: "primary.main" }} />
+            <h2 className="text-xl text-center tracking-wide"> GetMail</h2>
           </div>
           <form
             className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 my-2"
@@ -166,10 +170,22 @@ const Signin = () => {
             </div>
             <div className="flex items-center justify-between mb-6">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded focus:outline-none focus:shadow-outline"
                 type="submit"
               >
-                Sign In
+                <div className="py-1 px-2 flex justify-center items-center">
+                {
+                  !response  && isClicked ?
+                  <>
+                  <Loader />
+                  Signin
+                  </>
+                  : response && isClicked ? 'Signed in'
+                  : 'Sign In'
+                }
+
+                </div>
+               
               </button>
               <p
                 className="inline-block align-baseline font-bold text-sm text-blue-400 hover:text-blue-800 cursor-pointer"

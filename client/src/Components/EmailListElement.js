@@ -31,7 +31,7 @@ const EmailListElement = ({ email }) => {
       onClick={() => navigate(`/mail/${email._id}`)}
       className="flex  gap-4 justify-between rounded-md hover:bg-slate-100  cursor-pointer  sm:items-center text-[14px] p-1  flex-col sm:flex-row   "
     >
-      <div className="flex justify-start items-center my-2 gap-4 w-[320px]">
+      <div className="flex justify-start items-center my-2  md:my-4 gap-4 w-[320px]">
         <Avatar
           sx={{
             bgcolor: `${
